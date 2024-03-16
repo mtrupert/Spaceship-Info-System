@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargo Page</title>
+  <%- include('../Views/nav')-%>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <style>
+    span {
+      background-color: white;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      text-align: center;
+    }
+    table.center {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+  }
+  body {
+  background-image: url('https://thumbs.dreamstime.com/b/sci-fi-warehouse-where-containers-stored-laboratory-spaceship-d-illustration-sci-fi-warehouse-where-containers-stored-141174255.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+    } 
+  </style>
+  <h1><span>Cargo List</span></h1>
+  <!--Working-->
+  <table id="cargo-table" border="1" class="center">
+    <thead>
+      <tr>
+        <th>Weight</th>
+        <th>Cargo Type</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Ship ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (cargo.length) { %>
+        <% cargo.forEach(cargo => { %>
+          <tr>
+            <td><%= cargo.weight %></td>
+            <td><%= cargo.cargotype %></td>
+            <td><%= cargo.departure %></td>
+            <td><%= cargo.arrival %></td>
+            <td><%= cargo.shipid %></td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">No current cargo found.</td>
+        </tr>
+      <% } %>
+    </tbody>    
+  </table>
+  <!--WORKING-->
+  <h2><span>Add Cargo</span></h2>
+  <form id="add-cargo-form" method="post">
+    <label for="weight"><span>Weight</span>:</label>
+    <input type="text" id="weight" name="weight"><br><br>
+
+    <label for="cargotype"><span>Cargo Type:</span></label>
+    <input type="text" id="cargotype" name="cargotype"><br><br>
+
+    <label for="departure"><span>Departure:</span></label>
+    <input type="text" id="departure" name="departure"><br><br>
+
+    <label for="arrival"><span>Arrival:</span></label>
+    <input type="text" id="arrival" name="arrival"><br><br>
+
+    <label for="shipid"><span>Ship ID:</span></label>
+    <input type="text" id="shipid" name="shipid"><br><br>
+
+    <button type="submit">Add Cargo</button>
+  </form>
+
+  <h2><span>Update Cargo</span></h2>
+  <form id="update-cargo-form" method="put">
+    <label for="cargo-id"><span>Cargo ID:</span> </label>
+    <input type="number" name="cargo-id" id="cargo-id" required><br><br>
+
+    <label for="new-weight"><span>New Weight:</span> </label>
+    <input type="text" name="new-weight" id="new-weight"><br><br>
+
+    <label for="new-cargotype"><span>New Cargo Type:</span> </label>
+    <input type="text" name="new-cargotype" id="new-cargotype"><br><br>
+
+    <label for="new-departure"><span>New Departure:</span> </label>
+    <input type="text" name="new-departure" id="new-departure"><br><br>
+
+    <label for="new-arrival"><span>New Arrival:</span> </label>
+    <input type="text" name="new-arrival" id="new-arrival"><br><br>
+
+    <label for="new-shipid"><span>New Ship ID:</span> </label>
+    <input type="text" name="new-shipid" id="new-shipid"><br><br>
+
+    <button type="submit">Update Cargo</button>
+  </form>
+
+  <h2><span>Delete Cargo</span></h2>
+  <form id="delete-cargo-form" method="delete">
+    <label for="cargo-id"><span>Cargo ID: </span></label>
+    <input type="number" name="cargo-id" id="cargo-id" required><br><br>
+
+    <button type="submit">Delete Cargo</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/js/cargo.js"></script>
+
+</body>
+</html>

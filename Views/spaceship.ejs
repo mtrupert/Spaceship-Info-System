@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spaceships Page</title>
+  <%- include('../Views/nav')-%>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <style>
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      text-align: center;
+    }
+    table.center {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    body {
+  background-image: url('https://cdn5.vectorstock.com/i/1000x1000/83/29/futuristic-spaceship-with-fire-flames-flying-vector-37138329.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+    } 
+  </style>
+  <h1>Spaceship List</h1>
+  <!--WORKING-->
+  <table id="spaceship-table" border="1" class="center">
+    <thead>
+      <tr>
+        <th>Max Weight</th>
+        <th>Captain ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (spaceship.length) { %>
+        <% spaceship.forEach(spaceship => { %>
+          <tr>
+            <td><%= spaceship.maxweight %></td>
+            <td><%= spaceship.captainid %></td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">No spaceship found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <!--WORKING-->
+  <h2>Add Spaceship</h2>
+  <form id="add-spaceship-form" method="post">
+    <label for="maxweight">Max Weight:</label>
+    <input type="text" id="maxweight" name="maxweight" required><br><br>
+
+    <label for="captainid">Captain ID:</label>
+    <input type="text" id="captainid" name="captainid" required><br><br>
+
+    <button type="submit">Add Spaceship</button>
+  </form>
+
+  <h2>Update Spaceship</h2>
+  <form id="update-spaceship-form" method="put">
+    <label for="update-maxweight">Max Weight:</label>
+    <input type="text" id="update-maxweight" name="update-maxweight" required><br><br>
+
+    <label for="update-captainid">Captain ID:</label>
+    <input type="text" id="update-captainid" name="update-captainid" required><br><br>
+
+    <button type="submit">Update Spaceship</button>
+  </form>
+
+  <h2>Delete Spaceship</h2>
+  <form id="delete-spaceship-form" method="delete">
+
+    <label for="captainid">Captain ID:</label>
+    <input type="text" id="captainid" name="captainid" required><br><br>
+
+    <button type="submit">Delete Spaceship</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/js/spaceship.js"></script>
+
+</body>
+</html>

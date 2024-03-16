@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captain Management</title>
+  <%- include('../Views/nav')-%>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <style>
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      text-align: center;
+    }
+    table.center {
+    margin-left: auto;
+    margin-right: auto;
+    }
+    body {
+  background-image: url('https://img.freepik.com/premium-vector/astronaut-salute-landing-moon-cartoon-vector-illustration_509778-43.jpg?w=2000');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+    } 
+  </style>
+  <h1>Captain Overview</h1>
+ <!--WORKING-->
+  <table id="captain-table" border="1" class="center">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Rank</th>
+        <th>Home Planet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (captain.length) { %>
+        <% captain.forEach(captain => { %>
+          <tr>
+            <td><%= captain.firstname %></td>
+            <td><%= captain.lastname %></td>
+            <td><%= captain.captainrank %></td>
+            <td><%= captain.homeplanet %></td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="5">No captain found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <!--WORKING-->
+  <h2>Add Captain</h2>
+  <form id="add-captain-form" method="post">
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="firstname" required><br><br>
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lastname" required><br><br>
+
+    <label for="captainrank">Rank:</label>
+    <input type="text" id="captainrank" name="captainrank" required><br><br>
+
+    <label for="homeplanet">Home Planet:</label>
+    <input type="text" id="homeplanet" name="homeplanet" required><br><br>
+
+    <button type="submit">Add Captain</button>
+  </form>
+
+
+  <h2>Update Captain</h2>
+  <form id="update-captain-form" method="put">
+    <label for="update-firstname">First Name:</label>
+    <input type="text" id="update-firstname" name="update-firstname" required><br><br>
+
+    <label for="update-lastname">Last Name:</label>
+    <input type="text" id="update-lastname" name="update-lastname" required><br><br>
+
+    <label for="update-captainrank">Rank:</label>
+    <input type="text" id="update-captainrank" name="update-captainrank" required><br><br>
+
+    <label for="update-homeplanet">Home Planet:</label>
+    <input type="text" id="update-homeplanet" name="update-homeplanet" required><br><br>
+
+    <label for="update-id">Captain ID: </label>
+    <input type="text" name="update-id" id="update-id"><br><br>
+
+    <button type="submit">Update Captain</button>
+  </form>
+
+
+  <h2>Delete Captain</h2>
+  <form id="delete-captain-form" method="delete">
+    <label for="captain-id">Captain ID: </label>
+    <input type="number" name="captain-id" id="captain-id" required><br><br>
+
+    <button type="submit">Delete Captain</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/js/captain.js"></script>
+
+</body>
+</html>
